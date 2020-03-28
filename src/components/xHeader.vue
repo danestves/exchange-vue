@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import xIcon from "@/components/xIcon";
+import xIcon from '@/components/xIcon'
 
 export default {
-  name: "xHeader",
+  name: 'xHeader',
   components: {
     xIcon
   }
-};
+}
 </script>

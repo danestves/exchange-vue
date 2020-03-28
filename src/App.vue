@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import xHeader from "@/components/xHeader";
+import xHeader from '@/components/xHeader'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     xHeader
   }
-};
+}
 </script>

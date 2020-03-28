@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import xAssetsTableVue from "../components/xAssetsTable.vue";
+import xAssetsTableVue from '../components/xAssetsTable.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: { xAssetsTableVue }
-};
+}
 </script>
