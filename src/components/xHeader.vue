@@ -1,7 +1,9 @@
 <template>
   <header class="w-screen shadow">
     <nav>
-      <nav class="flex flex-wrap items-center justify-between p-6 bg-green-400">
+      <nav
+        class="flex flex-wrap items-center justify-between px-5 py-4 bg-blue-700"
+      >
         <div class="flex items-center flex-shrink-0 mr-6 text-white">
           <x-icon class="mr-2" />
           <span class="text-xl font-semibold tracking-tight">Exchange</span>

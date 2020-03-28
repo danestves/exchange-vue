@@ -1,19 +1,18 @@
 <template>
   <main>
     <x-header />
-    <x-assets-table-vue />
+
+    <router-view class="container flex justify-center px-5 py-20 sm:px-20" />
   </main>
 </template>
 
 <script>
 import xHeader from "@/components/xHeader";
-import xAssetsTableVue from "./components/xAssetsTable.vue";
 
 export default {
   name: "App",
   components: {
-    xHeader,
-    xAssetsTableVue
+    xHeader
   }
 };
 </script>
