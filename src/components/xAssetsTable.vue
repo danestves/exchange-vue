@@ -4,17 +4,32 @@
       <thead>
         <tr class="bg-gray-100 border-b-2 border-gray-400">
           <th></th>
-          <th><span>Ranking</span></th>
+          <th
+            class="flex items-center"
+            :class="{ up: this.sortOrder === 1, down: this.sortOrder === -1 }"
+          >
+            <span class="underline cursor-pointer" @click="changeSortOrder">
+              Ranking
+            </span>
+          </th>
           <th>Nombre</th>
           <th>Precio</th>
           <th>Cap. de Mercado</th>
           <th>Variación 24hr</th>
-          <td class="hidden sm:block"></td>
+          <td class="hidden sm:block">
+            <input
+              class="block w-full px-4 py-2 leading-normal bg-gray-100 border-b border-gray-400 appearance-none focus:outline-none"
+              id="filter"
+              placeholder="Buscar..."
+              type="text"
+              v-model="filter"
+            />
+          </td>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="asset in assets"
+          v-for="asset in filteredAssets"
           :key="asset.id"
           class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
         >
@@ -50,7 +65,7 @@
           >
             {{ asset.changePercent24Hr | percent }}
           </td>
-          <td class="hidden sm:block">
+          <td class="hidden text-center sm:block">
             <x-button @click="goToCoin(asset.id)">
               <span>Details</span>
             </x-button>
@@ -67,6 +82,32 @@ import xButton from '@/components/xButton'
 export default {
   name: 'xAssetsTable',
   components: { xButton },
+  data() {
+    return {
+      filter: '',
+      sortOrder: 1
+    }
+  },
+  computed: {
+    filteredAssets() {
+      const altOrder = this.sortOrder === 1 ? -1 : 1
+
+      return this.assets
+        .filter(a => {
+          return (
+            a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
+            a.name.toLowerCase().includes(this.filter.toLowerCase())
+          )
+        })
+        .sort((a, b) => {
+          if (parseInt(a.rank) > parseInt(b.rank)) {
+            return this.sortOrder
+          }
+
+          return altOrder
+        })
+    }
+  },
   props: {
     assets: {
       type: Array,
@@ -74,6 +115,9 @@ export default {
     }
   },
   methods: {
+    changeSortOrder() {
+      this.sortOrder = this.sortOrder === 1 ? -1 : 1
+    },
     goToCoin(id) {
       this.$router.push({ name: 'coin-detail', params: { id } })
     }

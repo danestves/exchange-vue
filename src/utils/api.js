@@ -29,4 +29,18 @@ async function getAssetHistory(coin) {
     .catch(err => console.error(err))
 }
 
-export { getAssets, getAsset, getAssetHistory }
+async function getMarkets(coin) {
+  return await axios
+    .get(`${url}/assets/${coin}/markets?limit=5`)
+    .then(res => res.data.data)
+    .catch(err => console.error(err))
+}
+
+async function getExchange(id) {
+  return await axios
+    .get(`${url}/exchanges/${id}`)
+    .then(res => res.data.data)
+    .catch(err => console.error(err))
+}
+
+export { getAssets, getAsset, getAssetHistory, getMarkets, getExchange }

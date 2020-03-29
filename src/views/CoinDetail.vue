@@ -121,27 +121,69 @@
             }
           ]"
         ></apexchart>
+
+        <h3 class="w-full my-10 text-xl">Best Exchange Offers</h3>
+
+        <table class="w-full">
+          <tr
+            v-for="market in markets"
+            :key="`${market.exchangeId}-${market.priceUsd}`"
+            class="border-b"
+          >
+            <td>
+              <b>{{ market.exchangeId }}</b>
+            </td>
+            <td>
+              {{ market.priceUsd | dolar }}
+            </td>
+            <td>{{ market.baseSymbol }} / {{ market.quoteSymbol }}</td>
+            <td>
+              <x-button
+                :is-loading="market.isLoading || false"
+                v-if="!market.url"
+                @click="getWebsite(market)"
+              >
+                <slot>Obtain link</slot>
+              </x-button>
+              <a
+                v-else
+                href="http://"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 transition-all duration-200 hover:underline"
+              >
+                {{ market.url }}
+              </a>
+            </td>
+          </tr>
+        </table>
       </div>
     </template>
   </div>
 </template>
 
 <script>
+// Dependencies
 import VueApexCharts from 'vue-apexcharts'
 
+// Components
+import xButton from '@/components/xButton'
+
 // Utils
-import { getAsset, getAssetHistory } from '@/utils/api'
+import { getAsset, getAssetHistory, getMarkets, getExchange } from '@/utils/api'
 
 export default {
   name: 'CoinDetail',
   components: {
-    apexchart: VueApexCharts
+    apexchart: VueApexCharts,
+    xButton
   },
   data() {
     return {
       isLoading: true,
       asset: {},
-      history: []
+      history: [],
+      markets: []
     }
   },
   computed: {
@@ -168,12 +210,22 @@ export default {
     getCoin() {
       const id = this.$route.params.id
 
-      return Promise.all([getAsset(id), getAssetHistory(id)])
-        .then(([asset, history]) => {
+      return Promise.all([getAsset(id), getAssetHistory(id), getMarkets(id)])
+        .then(([asset, history, markets]) => {
           this.asset = asset
           this.history = history
+          this.markets = markets
         })
         .finally(() => (this.isLoading = false))
+    },
+    getWebsite(exchange) {
+      this.$set(exchange, 'isLoading', true)
+
+      return getExchange(exchange.exchangeId)
+        .then(res => {
+          this.$set(exchange, 'url', res.exchangeUrl)
+        })
+        .finally(() => this.$set(exchange, 'isLoading', false))
     }
   }
 }
