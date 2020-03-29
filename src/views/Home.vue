@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex justify-center px-5 py-20">
+  <div class="container flex justify-center px-5 py-5">
     <circle-loader :loading="isLoading" :color="'#2b6cb0'" :size="100" />
     <x-assets-table-vue v-if="!isLoading" :assets="assets" />
   </div>

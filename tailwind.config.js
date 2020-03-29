@@ -323,6 +323,17 @@ module.exports = {
       ...negative(theme('spacing'))
     }),
     maxHeight: {
+      0: '0',
+      xs: '20rem',
+      sm: '24rem',
+      md: '28rem',
+      lg: '32rem',
+      xl: '36rem',
+      '2xl': '42rem',
+      '3xl': '48rem',
+      '4xl': '56rem',
+      '5xl': '64rem',
+      '6xl': '72rem',
       full: '100%',
       screen: '100vh'
     },
@@ -343,7 +354,6 @@ module.exports = {
     }),
     minHeight: {
       '0': '0',
-      full: '100%',
       screen: '100vh'
     },
     minWidth: {
@@ -629,7 +639,7 @@ module.exports = {
     borderColor: ['responsive', 'hover', 'focus'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
-    borderWidth: ['responsive'],
+    borderWidth: ['responsive', 'last'],
     boxShadow: ['responsive', 'hover', 'focus'],
     boxSizing: ['responsive'],
     cursor: ['responsive'],

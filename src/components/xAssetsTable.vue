@@ -1,51 +1,58 @@
 <template>
-  <div class="w-full overflow-auto">
+  <div class="w-full overflow-auto bg-gray-100 rounded-md shadow">
     <table class="w-full">
       <thead>
-        <tr class="bg-gray-100 border-b-2 border-gray-400">
-          <th></th>
+        <tr class="text-gray-700 bg-gray-100 border-b border-gray-400">
+          <th class="hidden md:table-cell"></th>
           <th
-            class="flex items-center"
+            class="hidden text-center md:table-cell"
             :class="{ up: this.sortOrder === 1, down: this.sortOrder === -1 }"
           >
             <span class="underline cursor-pointer" @click="changeSortOrder">
               Ranking
             </span>
           </th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Cap. de Mercado</th>
-          <th>Variación 24hr</th>
-          <td class="hidden sm:block">
+          <th class="text-center">Name</th>
+          <th class="text-center">Price</th>
+          <th class="hidden text-center md:table-cell">Market Cap</th>
+          <th class="text-center">24 hr Variation</th>
+          <td class="hidden md:table-cell">
             <input
-              class="block w-full px-4 py-2 leading-normal bg-gray-100 border-b border-gray-400 appearance-none focus:outline-none"
+              class="block w-full px-4 py-2 leading-normal bg-gray-100 appearance-none focus:outline-none"
               id="filter"
-              placeholder="Buscar..."
+              placeholder="Search..."
               type="text"
               v-model="filter"
             />
           </td>
         </tr>
       </thead>
-      <tbody>
+      <transition-group
+        enter-class="ease-in opacity-0"
+        enter-active-class="transition-all duration-500 ease-in-out"
+        leave-active-class="transition-all duration-500 ease-in-out"
+        leave-to-class="ease-out opacity-0"
+        move-class="transition-transform duration-700"
+        tag="tbody"
+      >
         <tr
           v-for="asset in filteredAssets"
           :key="asset.id"
-          class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
+          class="transition duration-200 border-b border-gray-300 last:border-0 hover:bg-blue-100"
         >
-          <td class="text-center">
+          <td class="hidden text-center md:table-cell">
             <img
-              class="w-12 h-12"
+              class="block w-12 h-12 mx-auto"
               :src="
                 `https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`
               "
               :alt="asset.name"
             />
           </td>
-          <td class="text-center">
-            <b># {{ asset.rank }}</b>
+          <td class="hidden p-4 text-center md:table-cell">
+            <b class="text-gray-700"># {{ asset.rank }}</b>
           </td>
-          <td class="text-center">
+          <td class="p-4 text-center">
             <router-link
               :to="{ name: 'coin-detail', params: { id: asset.id } }"
             >
@@ -53,25 +60,42 @@
               <small class="ml-1 text-gray-500">{{ asset.symbol }}</small>
             </router-link>
           </td>
-          <td class="text-center">{{ asset.priceUsd | dolar }}</td>
-          <td class="text-center">{{ asset.marketCapUsd | dolar }}</td>
+          <td class="p-4 text-center">{{ asset.priceUsd | dolar }}</td>
+          <td class="hidden p-4 text-center md:table-cell">
+            {{ asset.marketCapUsd | dolar }}
+          </td>
           <td
-            class="text-center"
+            class="p-4 text-center"
             :class="
               parseFloat(asset.changePercent24Hr) < 0.0
                 ? 'text-red-600'
                 : 'text-green-600'
             "
           >
+            <svg fill="currentColor" viewBox="0 0 20 20" class="inline w-6 h-6">
+              <path
+                v-if="parseFloat(asset.changePercent24Hr) < 0.0"
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+
+              <path
+                v-if="parseFloat(asset.changePercent24Hr) > 0.0"
+                fill-rule="evenodd"
+                d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
             {{ asset.changePercent24Hr | percent }}
           </td>
-          <td class="hidden text-center sm:block">
+          <td class="hidden p-4 text-center md:table-cell">
             <x-button @click="goToCoin(asset.id)">
               <span>Details</span>
             </x-button>
           </td>
         </tr>
-      </tbody>
+      </transition-group>
     </table>
   </div>
 </template>
@@ -124,36 +148,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.up::before {
-  content: '👆';
-}
-
-.down::before {
-  content: '👇';
-}
-
-.td {
-  padding: 20px 0px;
-  font-size: 0.6rem;
-  text-align: center;
-}
-
-.th {
-  padding: 5px;
-  font-size: 0.6rem;
-}
-
-@media (min-width: 640px) {
-  td,
-  th {
-    padding: 20px;
-    font-size: 1rem;
-  }
-
-  th {
-    padding: 12px;
-  }
-}
-</style>

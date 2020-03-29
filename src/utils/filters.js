@@ -6,7 +6,7 @@ const dolarFilter = value => {
     return '$ 0'
   }
 
-  return numeral(value).format('($ 0.00a)')
+  return numeral(value).format('($ 0.00 a)')
 }
 
 const percentFilter = value => {

@@ -1,9 +1,7 @@
 <template>
-  <header class="w-screen shadow">
-    <nav>
-      <nav
-        class="flex flex-wrap items-center justify-between px-5 py-4 bg-blue-600"
-      >
+  <header class="w-screen bg-blue-600 shadow">
+    <nav class="container px-5">
+      <nav class="flex flex-wrap items-center justify-between px-5 py-4">
         <router-link
           :to="{ name: 'home' }"
           class="flex items-center flex-shrink-0 mr-6 text-white"
@@ -12,10 +10,15 @@
           <span class="text-xl font-semibold tracking-tight">Exchange</span>
         </router-link>
 
-        <div
-          class="flex-grow hidden block w-full sm:block lg:flex lg:items-center lg:w-auto"
-        >
-          <div class="text-sm lg:flex-grow"></div>
+        <div class="flex items-center flex-grow">
+          <div class="w-full text-right">
+            <router-link
+              :to="{ name: 'about' }"
+              class="px-6 py-3 text-white transition duration-200 rounded hover:bg-blue-700"
+            >
+              About
+            </router-link>
+          </div>
         </div>
       </nav>
     </nav>
