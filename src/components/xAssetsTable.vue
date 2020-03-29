@@ -43,7 +43,7 @@
           <td class="hidden text-center md:table-cell">
             <img
               class="block w-12 h-12 mx-auto"
-              :src="
+              v-lazy="
                 `https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`
               "
               :alt="asset.name"

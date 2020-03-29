@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import VueApexCharts from 'vue-apexcharts'
 import { VueSpinners } from '@saeris/vue-spinners'
+import VueLazyload from 'vue-lazyload'
 
 // App
 import App from '@/App.vue'
@@ -20,6 +21,7 @@ import { dolarFilter, percentFilter } from '@/utils/filters'
 
 Vue.use(VueApexCharts)
 Vue.use(VueSpinners)
+Vue.use(VueLazyload)
 Vue.filter('dolar', dolarFilter)
 Vue.filter('percent', percentFilter)
 Vue.config.productionTip = false
