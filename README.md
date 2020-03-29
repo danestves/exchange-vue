@@ -25,6 +25,10 @@
 
 ### ✨ [Demo](https://exchange-danestves.now.sh)
 
+[![Home page](https://i.imgur.com/zYZA56n.png)](https://exchange-danestves.now.sh)
+
+[![BTC detailed page](https://i.imgur.com/8k3R0wN.png)](https://exchange-danestves.now.sh/coin/bitcoin)
+
 ## Project setup
 
 ```
