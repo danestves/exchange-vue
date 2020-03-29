@@ -21,13 +21,13 @@
 
 > Frontend made with TailwindCSS to show information about cryptocurrencies
 
-### 🏠 [Homepage](https://exchange-danestves.now.sh)
+### 🏠 [Homepage](https://exchange.danestves.com)
 
-### ✨ [Demo](https://exchange-danestves.now.sh)
+### ✨ [Demo](https://exchange.danestves.com)
 
-[![Home page](https://i.imgur.com/zYZA56n.png)](https://exchange-danestves.now.sh)
+[![Home page](https://i.imgur.com/zYZA56n.png)](https://exchange.danestves.com)
 
-[![BTC detailed page](https://i.imgur.com/8k3R0wN.png)](https://exchange-danestves.now.sh/coin/bitcoin)
+[![BTC detailed page](https://i.imgur.com/8k3R0wN.png)](https://exchange.danestves.com/coin/bitcoin)
 
 ## Project setup
 
@@ -64,7 +64,7 @@ npm run lint
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/expensetrackerofficial/frontend/issues). You can also take a look at the [contributing guide](https://github.com/expensetrackerofficial/frontend/blob/master/contributing.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/danestves/exchange-vue/issues). You can also take a look at the [contributing guide](https://github.com/danestves/exchange-vue/blob/master/contributing.md).
 
 ## Contributors ✨
 
@@ -75,7 +75,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://danestves.com/"><img src="https://avatars0.githubusercontent.com/u/31737273?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Esteves</b></sub></a><br /><a href="https://github.com/expensetrackerofficial/frontend/commits?author=danestves" title="Code">💻</a> <a href="#design-danestves" title="Design">🎨</a> <a href="#maintenance-danestves" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://danestves.com/"><img src="https://avatars0.githubusercontent.com/u/31737273?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Esteves</b></sub></a><br /><a href="https://github.com/danestves/exchange-vue/commits?author=danestves" title="Code">💻</a> <a href="#design-danestves" title="Design">🎨</a> <a href="#maintenance-danestves" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 

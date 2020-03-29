@@ -1,4 +1,4 @@
-_(Thanks for reporting an issue to expense-tracker-frontend! If you haven't already read the [contributor guidelines](contributing.md), Please do that now, then procede to fill out the details below.)_
+_(Thanks for reporting an issue to exchange-vue! If you haven't already read the [contributor guidelines](contributing.md), Please do that now, then procede to fill out the details below.)_
 
 ## What are the minimum necessary steps to reproduce this issue?
 
