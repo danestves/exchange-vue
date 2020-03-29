@@ -24,6 +24,14 @@ export default new Router({
       component: () => import('@/views/About')
     },
     {
+      path: '/coin/:id',
+      name: 'coin-detail',
+      // route level code-splitting
+      // this generate a separate chunk ([route-name].[hash].js) for this route
+      // which is lazy-loaded when the route is visited
+      component: () => import('@/views/CoinDetail')
+    },
+    {
       path: '*',
       name: 'error',
       // route level code-splitting

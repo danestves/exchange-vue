@@ -1,7 +1,7 @@
 // Dependencies
 import numeral from 'numeral'
 
-const dollarFilter = value => {
+const dolarFilter = value => {
   if (!value) {
     return '$ 0'
   }
@@ -17,4 +17,4 @@ const percentFilter = value => {
   return `${Number(value).toFixed(2)}%`
 }
 
-export { dollarFilter, percentFilter }
+export { dolarFilter, percentFilter }

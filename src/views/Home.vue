@@ -9,7 +9,7 @@
 import xAssetsTableVue from '../components/xAssetsTable.vue'
 
 // Utils
-import api from '@/utils/api'
+import { getAssets } from '@/utils/api'
 
 export default {
   name: 'Home',
@@ -20,7 +20,7 @@ export default {
     }
   },
   created() {
-    api.getAssets().then(assets => (this.assets = assets))
+    getAssets().then(assets => (this.assets = assets))
   }
 }
 </script>
