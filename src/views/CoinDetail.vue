@@ -1,7 +1,16 @@
 <template>
-  <div class="flex-col items-center">
-    <template v-if="asset.id">
-      <div class="flex flex-col items-center justify-around w-full sm:flex-row">
+  <div class="container flex-col items-center justify-center px-5 py-20">
+    <circle-loader
+      :loading="isLoading"
+      :color="'#2b6cb0'"
+      :size="100"
+      class="mx-auto"
+    />
+
+    <template v-if="!isLoading">
+      <div
+        class="flex flex-col flex-wrap items-center justify-around w-full sm:flex-row"
+      >
         <div class="flex flex-col items-center">
           <img
             :src="
@@ -47,7 +56,7 @@
 
         <div class="flex flex-col justify-center my-10 sm:mt-0 textcenter">
           <button
-            class="px-6 py-2 font-bold text-white transition-all duration-200 bg-blue-700 rounded hover:bg-blue-900"
+            class="px-6 py-2 font-bold text-white transition-all duration-200 bg-blue-600 rounded hover:bg-blue-700"
           >
             Change
           </button>
@@ -64,19 +73,73 @@
 
           <span class="text-xl"></span>
         </div>
+
+        <apexchart
+          type="area"
+          height="350"
+          class="w-full"
+          :options="{
+            chart: {
+              type: 'area',
+              height: 350,
+              zoom: {
+                enabled: false
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'smooth'
+            },
+            title: {
+              text: 'Fundamental Analysis of Stocks',
+              align: 'left'
+            },
+            subtitle: {
+              text: 'Price Movements',
+              align: 'left'
+            },
+            labels: history.map(h => [h.date]),
+            xaxis: {
+              type: 'datetime'
+            },
+            yaxis: {
+              opposite: true
+            },
+            legend: {
+              horizontalAlign: 'left'
+            }
+          }"
+          :series="[
+            {
+              name: 'STOCK ABC',
+              data: history.map(h => [
+                h.date,
+                parseFloat(h.priceUsd).toFixed(2)
+              ])
+            }
+          ]"
+        ></apexchart>
       </div>
     </template>
   </div>
 </template>
 
 <script>
+import VueApexCharts from 'vue-apexcharts'
+
 // Utils
 import { getAsset, getAssetHistory } from '@/utils/api'
 
 export default {
   name: 'CoinDetail',
+  components: {
+    apexchart: VueApexCharts
+  },
   data() {
     return {
+      isLoading: true,
       asset: {},
       history: []
     }
@@ -105,12 +168,12 @@ export default {
     getCoin() {
       const id = this.$route.params.id
 
-      return Promise.all([getAsset(id), getAssetHistory(id)]).then(
-        ([asset, history]) => {
+      return Promise.all([getAsset(id), getAssetHistory(id)])
+        .then(([asset, history]) => {
           this.asset = asset
           this.history = history
-        }
-      )
+        })
+        .finally(() => (this.isLoading = false))
     }
   }
 }

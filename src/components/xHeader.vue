@@ -2,12 +2,15 @@
   <header class="w-screen shadow">
     <nav>
       <nav
-        class="flex flex-wrap items-center justify-between px-5 py-4 bg-blue-700"
+        class="flex flex-wrap items-center justify-between px-5 py-4 bg-blue-600"
       >
-        <div class="flex items-center flex-shrink-0 mr-6 text-white">
+        <router-link
+          :to="{ name: 'home' }"
+          class="flex items-center flex-shrink-0 mr-6 text-white"
+        >
           <x-icon class="mr-2" />
           <span class="text-xl font-semibold tracking-tight">Exchange</span>
-        </div>
+        </router-link>
 
         <div
           class="flex-grow hidden block w-full sm:block lg:flex lg:items-center lg:w-auto"
@@ -20,6 +23,7 @@
 </template>
 
 <script>
+// Components
 import xIcon from '@/components/xIcon'
 
 export default {
